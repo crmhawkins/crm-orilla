@@ -86,45 +86,24 @@
                     list: 'Lista'
                 },
                 events: [
-                    @foreach ($eventos as $evento)
-                        @if ($presupuestos->where('id_evento', $evento->id)->first()->estado != 'Cancelado')
-                            {
-                                title: '{{ $this->categorias->where('id', $evento->eventoNombre)->first()->nombre }} ',
-                                start: '{{ $evento->diaEvento }}',
-                                end: '{{ $evento->diaFinal }}',
-                                description: '<br> <b>Protagonista:</b> {{ $evento->eventoProtagonista }} <br> <b>Niños:</b> {{ $evento->eventoNiños }}<br> <b>Adultos:</b> {{ $evento->eventoAdulto }}',
-                                id: '{{ $evento->id }}',
-                                html: true,
-                                @if ($presupuestos->where('id_evento', $evento->id)->first()->estado == 'Pendiente')
-                                    color: '#f39200',
-                                    presupuestoId: '{{ $presupuestos->where('id_evento', $evento->id)->first()->id }}',
-                                @elseif ($presupuestos->where('id_evento', $evento->id)->first()->estado == 'Aceptado')
-                                    color: '#30419b',
-                                        presupuestoId:
-                                        '{{ $presupuestos->where('id_evento', $evento->id)->first()->id }}',
-                                @elseif ($presupuestos->where('id_evento', $evento->id)->first()->estado == 'Completado')
-                                    color: '#009e4e',
-                                        presupuestoId:
-                                        '{{ $presupuestos->where('id_evento', $evento->id)->first()->id }}',
-                                @elseif ($presupuestos->where('id_evento', $evento->id)->first()->estado == 'Facturado')
-                                    color: '#991b7a',
-                                        presupuestoId:
-                                        '{{ $presupuestos->where('id_evento', $evento->id)->first()->id }}',
-                                @endif
-                            },
-                        @endif
+                    @foreach ($reservas as $reserva)
+                    {
+                    title: '{{ $reserva->nombre}}', // Asegúrate de que 'nombreEvento' exista en tu objeto reserva
+                    start: '{{ $reserva->fecha}}', // Asegúrate de que 'fechaInicio' exista y esté en formato 'YYYY-MM-DD'
+                    description: '{{ $reserva->comensales }}',
+                    presupuestoId: '{{ $reserva->id }}'
+                    },
                     @endforeach
                 ],
                 eventClick: function(info) {
                     if (info.event.extendedProps.presupuestoId != undefined) {
-                        console.log('hola');
-                        window.open('https://crm.fabricandoeventosjerez.com/admin/presupuestos-edit/' +
+                        window.open('http://localhost:8000/admin/reservas-edit/'+
                             info.event.extendedProps.presupuestoId);
                     }
                 },
                 eventDidMount: function(info) {
                     var tooltip = new bootstrap.Tooltip(info.el, {
-                        title: '<h5>' + info.event.title + '</h5>' + info.event.extendedProps
+                        title: '<h5>' + info.event.title + '</h5>' + 'Nº de comensales: '+info.event.extendedProps
                             .description,
                         placement: 'top',
                         trigger: 'hover',
@@ -144,34 +123,19 @@
                 var doc = new jsPDF();
                 var img = Canvas2Image.convertToPNG(canvas);
                 doc.setProperties({
-                    title: 'Eventos',
+                    title: 'Reservas',
                     subject: 'Info about PDF',
                     author: 'PDFAuthor',
                     keywords: 'generated, javascript, web 2.0, ajax',
                     creator: 'My Company'
                 });
                 doc.setFontSize(22);
-                doc.text(15, 20, 'Eventos');
+                doc.text(15, 20, 'Reservas');
                 doc.addImage(img, 'PNG', 15, 40, 180, 160);
                 doc.save('div.pdf');
-                //   $(".response").append(canvas);
             })
 
-            // var calendarEl = $('#calendar');
-            // console.log(calendarEl[0].innerHTML)
-            // // Crea un nuevo objeto jsPDF
-            // var doc = new jsPDF();
 
-            // // Agrega el contenido HTML del calendario al documento PDF
-            // // doc.addHTML(calendarEl, 10, 10);
-            // // doc.addHTML(calendarEl, function () {
-            // //     doc.save('calendario.pdf');
-            // // });
-            // doc.fromHTML(`<html><head><title>Eventos</title></head><body>` + calendarEl[0].innerHTML + `</body></html>`);
-            // doc.save('div.pdf');
-
-            // // Guarda el archivo PDF
-            // doc.save('calendario.pdf');
         }
     </script>
 @endsection

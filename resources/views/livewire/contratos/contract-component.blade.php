@@ -85,7 +85,7 @@
         <img src="{{ public_path('assets/images/logo_factura.png') }}" alt="Firma del Cliente"
             style="display: float; float: right; height:10%">
         <div class="row">
-            <div class="label"><b>EDUCACIÓN, OCIO Y TIEMPO LIBRE LA FABRICA S.L.</b></b></div>
+            <div class="label"><b>EDUCACIÓN, OCIO Y TIEMPO LIBRE Chiringuito la Orilla S.L.</b></b></div>
         </div>
         <div class="row">
             <div class="value">B-11949658</div>
@@ -363,7 +363,7 @@
                 <tr width="100%" style="margin-bottom: -5px;">
                     <td colspan="2"
                         style="border-top-color: #fff !important; border-bottom-color: #fff !important;"><b>EDUCACIÓN,
-                            OCIO Y TIEMPO LIBRE LA FABRICA S.L.</b>
+                            OCIO Y TIEMPO LIBRE Chiringuito la Orilla S.L.</b>
                     </td>
                 </tr>
                 <tr width="100%" style="margin-bottom: -5px;">

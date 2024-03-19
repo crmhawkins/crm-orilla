@@ -1,5 +1,4 @@
-{{-- {{ var_dump($eventoServicios) }} --}}
-{{-- @section('content') --}}
+
 <div class="container-fluid">
     <div class="page-title-box">
         <div class="row align-items-center">

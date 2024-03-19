@@ -3,7 +3,7 @@
 use App\Http\Controllers\CajaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\BudgetReferenceAutopincrementsController;
 use App\Http\Controllers\BudgetStatuController;
 use App\Http\Controllers\ClientsEmailController;
@@ -69,7 +69,6 @@ Route::name('inicio')->get('/', function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clients.index');
 
 
 
@@ -78,13 +77,11 @@ Route::group(['middleware' => 'is.admin', 'prefix' => 'admin'], function () {
 
 
     /* --------------------------------------- */
-    // Budgets
-    Route::get('budgets', [BudgetController::class, 'index'])->name('budget.index');
-    Route::get('budget-create', [BudgetController::class, 'create'])->name('budget.create');
-    Route::post('budget-store', [BudgetController::class, 'store'])->name('budget.store');
-    Route::get('budget-edit', [BudgetController::class, 'edit'])->name('budget.edit');
-    Route::post('budget-update', [BudgetController::class, 'update'])->name('budget.update');
-    Route::delete('budget-delete', [BudgetController::class, 'delete'])->name('budget.delete');
+    // reserva
+
+    Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
+    Route::get('/reservas-create', [ReservaController::class, 'create'])->name('reservas.create');
+    Route::get('/reservas-edit/{id}', [ReservaController::class, 'edit'])->name('reservas.edit');
 
     // Budgets Reference Autoincremental
     Route::get('budgets-reference', [BudgetReferenceAutopincrementsController::class, 'index'])->name('budgetReference.index');
@@ -207,13 +204,6 @@ Route::group(['middleware' => 'is.admin', 'prefix' => 'admin'], function () {
     Route::post('project-priority-updated', [ProjectPriorityController::class, 'updated'])->name('projectPriority.updated');
     Route::delete('project-priority-delete', [ProjectPriorityController::class, 'delete'])->name('projectPriority.delete');
 
-    // // Facturas
-    // Route::get('generar-factura', [FacturasController::class, 'generar'])->name('generarFactura.generar');
-    // Route::get('factura', [FacturasController::class, 'index'])->name('factura.index');
-    // Route::get('factura/create', [FacturasController::class, 'create'])->name('factura.create');
-    // Route::get('factura/edit/{id}', [FacturasController::class, 'edit'])->name('factura.edit');
-    // Route::get('factura/electronica/{id}', [FacturasController::class, 'electronica'])->name('factura.electronica');
-    // Route::get('factura/pdf/{id}', [FacturasController::class, 'pdf'])->name('facturas.pdf');
 
 
     // Settings

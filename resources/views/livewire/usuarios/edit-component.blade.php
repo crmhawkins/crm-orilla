@@ -44,7 +44,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label for="username" class="col-sm-12 col-form-label">Usuario </label>
+                                <div class="col-sm-11">
+                                    <input type="text" wire:model="username" class="form-control" name="username" id="username" placeholder="jose85">
+                                    @error('username')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <label for="email" class="col-sm-12 col-form-label">Email </label>
                                 <div class="col-sm-11">
                                     <input type="text" wire:model="email" class="form-control" name="email" id="email" placeholder="jose85@hotmail.com ...">
@@ -54,63 +63,13 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label for="user_department_id" class="col-sm-12 col-form-label">Departamento </label>
-                                <div class="col-sm-10" wire:ignore.self>
-                                    @if (count($despartamentos) > 0)
-                                    <select id="user_department_id" class="form-control js-example-responsive" wire:model="user_department_id">
-                                        @foreach ($despartamentos as $despartamento)
-                                        <option value="{{$despartamento->id}}">{{$despartamento->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @else
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <input type="text" class="form-control" value="No hay departamentos creados." name="no-departament" id="no-departament" disabled>
-
-                                            <input type="hidden" name="user_department_id">
-                                        </div>
-                                        <div class="col-3">
-                                            <a target="_blank" href="{{route('departamento.create')}}" class="btn btn-primary btn-lg waves-effect waves-light">Crear Departamento</a>
-                                        </div>
-                                    </div>
-
-                                    @endif
-                                    @error('user_department_id')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="role" class="col-sm-12 col-form-label">Rol</label>
-                                <div class="col-sm-10" wire:ignore.self>
-                                    <select id="role" class="form-control js-example-responsive" wire:model="role">
-                                        <option value="alumno">Empleado</option>
-                                        @if (Auth::user()->role == 'admin')
-                                        <option value="admin">Admin</option>
-                                        @endif
-                                    </select>
-                                    @error('role')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-12">
-                                <label for="username" class="col-sm-12 col-form-label">Usuario </label>
+                        @if (!empty($this->token))
+                            <div class="form-group row">
                                 <div class="col-sm-11">
-                                    <input type="text" wire:model="username" class="form-control" name="username" id="username" placeholder="jose85">
-                                    @error('username')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <div class="col-sm-12 alert alert-success">Token generado: {{ $this->token }}</div>
                                 </div>
                             </div>
-                        </div>
-
+                        @endif
                         <div class="form-group row">
                             <div class="col-sm-11">
                                 <label for="password" class="col-sm-12 col-form-label">Contraseña </label>
@@ -138,10 +97,9 @@
                     <h5>Acciones</h5>
                     <div class="row">
                         <div class="col-12">
-                            <button class="w-100 btn btn-success mb-2" id="alertaGuardar">Guardar
-                                Usuario</button>
-                            <button class="w-100 btn btn-danger mb-2" wire:click="destroy">Eliminar
-                                Usuario</button>
+                            <button class="w-100 btn btn-success mb-2" id="alertaGuardar">Guardar Usuario</button>
+                            <button wire:click="generateToken" class="w-100 btn btn-primary mb-2">Generar Token</button>
+                            <button class="w-100 btn btn-danger mb-2" wire:click="destroy">Eliminar Usuario</button>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,12 @@ use App\Http\Controllers\Api\ReservaController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/storeReservas', [ReservaController::class, 'store']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/storeReservas', [ReservaController::class, 'store']);
+    // Agrega aquí cualquier otra ruta que requiera protección
+});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

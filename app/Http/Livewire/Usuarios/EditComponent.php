@@ -13,9 +13,10 @@ class EditComponent extends Component
     use LivewireAlert;
 
     public $identificador;
-
+    public $despartamentos;
     public $name;
     public $surname;
+    public $token;
     public $role;
     public $username;
     public $password;
@@ -103,6 +104,36 @@ class EditComponent extends Component
 
         $this->emit('userUpdated');
     }
+
+
+    public function generateToken()
+{
+    $user = User::find($this->identificador);
+    if ($user) {
+        // Genera el token
+        $token = $user->createToken('NombreDelToken')->plainTextToken;
+        $this->token = $token; // Asigna el token generado a la propiedad
+        // Opcional: Guarda el token en alguna parte si necesitas hacerlo
+        // Por ejemplo, en una propiedad del componente o en la base de datos
+
+        $this->alert('success', 'Token generado correctamente: '.$token, [
+            'position' => 'center',
+            'timer' => 10000, // Tiempo más largo para dar oportunidad de copiar el token
+            'toast' => false,
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Ok',
+        ]);
+
+        // Aquí podrías establecer una propiedad pública $this->token = $token;
+        // para mostrar el token en la vista, si así lo deseas.
+    } else {
+        $this->alert('error', 'Usuario no encontrado.', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => false,
+        ]);
+    }
+}
 
       // Eliminación
       public function destroy(){

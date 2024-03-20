@@ -6,11 +6,10 @@
     <div class="topbar-left" style="margin-bottom: -145px !important;">
         <a href="{{route('home')}}" class="logo">
             <span class="logo-light">
-                <img class="img-fluid p-4" src="{{ asset('assets/images/logo_la_fabrica.png') }}" alt="Logo Chiringuito la Orilla">
-                {{-- <i class="mdi mdi-camera-control"></i> Chiringuito la Orilla --}}
+                <img class="img-fluid p-4" src="{{ asset('assets/images/logo_empresa.png') }}" alt="Logo Chiringuito la Orilla">
             </span>
             <span class="logo-sm">
-                <img class="img-fluid p-1" src="{{ asset('assets/images/logo_la_fabrica.png') }}" alt="Logo Chiringuito la Orilla">
+                <img class="img-fluid p-1" src="{{ asset('assets/images/logo_empresa.png') }}" alt="Logo Chiringuito la Orilla">
             </span>
         </a>
     </div>
@@ -96,7 +95,7 @@
                 <div class="dropdown notification-list nav-pro-img">
                     <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="https://crm.fabricandoeventosjerez.com/assets/images/users/user-4.jpg" alt="user"
+                        <img src="https://reservas.laorillachiringuito.com/assets/images/users/user-4.jpg" alt="user"
                             class="rounded-circle">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">

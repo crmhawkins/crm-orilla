@@ -8,7 +8,7 @@
             <ul class="metismenu" id="side-menu">
                 <li class="menu-title">General</li>
                 <li>
-                    <a href="/../home" class="waves-effect">
+                    <a href="/admin/home" class="waves-effect">
                         <i class="icon-accelerator"></i><span> Dashboard </span>
                     </a>
                 </li>

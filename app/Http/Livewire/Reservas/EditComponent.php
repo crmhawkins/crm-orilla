@@ -16,6 +16,7 @@ class EditComponent extends Component
     public $comensales;
     public $telefono;
     public $email;
+    public $estado;
 
     public  function mount()
     {
@@ -26,6 +27,7 @@ class EditComponent extends Component
         $this->comensales = $reserva->comensales;
         $this->telefono = $reserva->telefono;
         $this->email = $reserva->email;
+        $this->estado = $reserva->estado;
     }
     public function render()
     {
@@ -44,6 +46,7 @@ class EditComponent extends Component
                     'comensales' => 'nullable',
                     'telefono' => 'nullable',
                     'email' => 'nullable',
+                    'estado' => 'nullable',
                 ],
                 // Mensajes de error
                 [
@@ -64,6 +67,7 @@ class EditComponent extends Component
                 'comensales' => $this->comensales,
                 'telefono' => $this->telefono,
                 'email' => $this->email,
+                'estado' => $this->estado,
                 ]);
 
 

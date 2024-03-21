@@ -28,7 +28,7 @@
                                     style="border-bottom: 1px gray solid !important; padding-bottom: 10px !important;">
                                     Datos de la reserva</h5>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <label for="example-text-input" class="col-sm-12 col-form-label">Nombre de contacto</label>
                                 <div class="col-sm-12">
                                     <input type="text" wire:model="nombre" class="form-control" name="nombre"
@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <label for="example-text-input" class="col-sm-12 col-form-label">Nª de comensales</label>
                                 <div class="col-sm-12">
                                     <input type="number" wire:model="comensales" class="form-control" name="comensales"
@@ -58,7 +58,19 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label for="example-text-input" class="col-sm-12 col-form-label">Estado</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control" name="estado" id="estado" wire:model="estado">
+                                        <option value="0">Pendiente</option>
+                                        <option value="1">Aceptado</option>
+                                        <option value="2">Cancelado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <label for="example-text-input" class="col-sm-12 col-form-label">Email</label>
                                 <div class="col-sm-12">
                                     <input type="email" wire:model="email" class="form-control" name="email" pattern=".+@example\.com"

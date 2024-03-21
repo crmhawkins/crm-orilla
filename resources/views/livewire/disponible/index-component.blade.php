@@ -19,32 +19,49 @@
                 <div class="card-body">
                     <h4 class="mt-0 header-title">Listado de todos las Reservas por dia</h4>
                     <p class="sub-title">Listado completo de todas nuestras Reservas por dia</p>
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Hora</th>
-                                <th scope="col">Nº de comensales</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reservas as $reserva)
-                            <tr>
-                                <td>{{ $reserva->nombre }}</td>
-                                <td>{{ $reserva->fecha }}</td>
-                                <td>{{ $reserva->hora }}</td>
-                                <td>{{ $reserva->comensales }}</td>
-                                <td>{{ $reserva->telefono }}</td>
-                                <td>{{ $reserva->email }}</td>
-                                <td> <a href="reservas-edit/{{ $reserva->id }}" class="btn btn-primary">Ver/Editar</a> </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @if (count($reservas) > 0)
+                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Nº de comensales</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($reservas as $reserva)
+                                <tr>
+                                    <td>{{ $reserva->nombre }}</td>
+                                    <td>{{ $reserva->fecha }}</td>
+                                    <td>{{ $reserva->hora }}</td>
+                                    <td>{{ $reserva->comensales }}</td>
+                                    <td>{{ $reserva->telefono }}</td>
+                                    <td>{{ $reserva->email }}</td>
+                                    <td>@switch($reserva->estado)
+                                        @case(0)
+                                            <span class="badge badge-warning">Pendiente</span>
+                                            @break
+                                        @case(1)
+                                            <span class="badge badge-success">Aceptado</span>
+                                            @break
+                                        @case(2)
+                                            <span class="badge badge-danger">Cancelado</span>
+                                            @break
+                                            <span class="badge badge-info">Estado no definido</span>
+                                        @default
+                                    @endswitch
+                                    </td>
+                                    <td> <a href="reservas-edit/{{ $reserva->id }}" class="btn btn-primary">Ver/Editar</a> </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>

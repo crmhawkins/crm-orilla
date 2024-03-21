@@ -34,6 +34,7 @@
                                     <th scope="col">Nº de comensales</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Estado</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -46,7 +47,21 @@
                                         <td>{{ $reserva->comensales }}</td>
                                         <td>{{ $reserva->telefono }}</td>
                                         <td>{{ $reserva->email }}</td>
-                                        <td> <a href="reservas-edit/{{ $reserva->id }}" class="btn btn-primary">Ver/Editar</a> </td>
+                                        <td>@switch($reserva->estado)
+                                            @case(0)
+                                                <span class="badge badge-warning">Pendiente</span>
+                                                @break
+                                            @case(1)
+                                                <span class="badge badge-success">Aceptado</span>
+                                                @break
+                                            @case(2)
+                                                <span class="badge badge-danger">Cancelado</span>
+                                                @break
+                                                <span class="badge badge-info">Estado no definido</span>
+                                            @default
+                                        @endswitch
+                                        </td>
+                                        <td> <a href="reservas-edit/{{ $reserva->id }}" class="btn btn-primary">Ver/Editar</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -20,6 +20,7 @@ class CreateComponent extends Component
     public $comensales;
     public $telefono;
     public $email;
+    public $estado = 1;
 
     public function render()
     {
@@ -38,6 +39,7 @@ class CreateComponent extends Component
                 'comensales' => 'nullable',
                 'telefono' => 'nullable',
                 'email' => 'nullable',
+                'estado' => 'nullable',
             ],
             // Mensajes de error
             [

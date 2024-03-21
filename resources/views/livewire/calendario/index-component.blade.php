@@ -91,13 +91,28 @@
                     title: '{{ $reserva->nombre}}', // Asegúrate de que 'nombreEvento' exista en tu objeto reserva
                     start: '{{ $reserva->fecha}}', // Asegúrate de que 'fechaInicio' exista y esté en formato 'YYYY-MM-DD'
                     description: '{{ $reserva->comensales }}',
-                    presupuestoId: '{{ $reserva->id }}'
+                    presupuestoId: '{{ $reserva->id }}',
+                    html: true,
+                    @switch($reserva->estado)
+                        @case(0)
+                        color: '#FCBE2D',
+                            @break
+                        @case(1)
+                        color: '#02C58D',
+                            @break
+                        @case(2)
+                        color: '#FC5454',
+                            @break
+
+                        @default
+
+                    @endswitch
                     },
                     @endforeach
                 ],
                 eventClick: function(info) {
                     if (info.event.extendedProps.presupuestoId != undefined) {
-                        window.open('http://localhost:8000/admin/reservas-edit/'+
+                        window.open('/admin/reservas-edit/'+
                             info.event.extendedProps.presupuestoId);
                     }
                 },

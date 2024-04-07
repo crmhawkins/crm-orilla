@@ -103,7 +103,7 @@ class ReservaController extends Controller
                     $numComensales -= 6;
                 } else if ($mesasDisponibles['cuatro'] > 0) {
                     // Al usar una mesa de 4, considerar la penalización al unir mesas
-                    if ($mesasDeCuatroAsignadas == 0) {
+                    if ($mesasDeCuatroAsignadas == 0 &&  $mesasDeSeisAsignadas == 0) {
                         $numComensales -= 4; // La primera mesa de 4 aporta 4 lugares
                     } else {
                         $lugaresAdicionalesPorMesasDeCuatro += 2; // Cada mesa adicional solo añade 2 lugares

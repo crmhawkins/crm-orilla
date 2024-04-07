@@ -32,7 +32,7 @@ class ReservaController extends Controller
             if ($reserva->estado == 1) {
                 Mail::to($emailDelCliente)->send(new ReservaCreada($reserva));
             }
-            return response()->json(['reserva' => $reserva, 'detalleAsignacion' => $resultadoAsignacion], 201);
+            return response()->json(['reserva' => $reserva], 201);
         } else {
             return response()->json(['error' => 'No hay suficientes mesas disponibles para acomodar la reserva.'], 400);
         }
@@ -106,8 +106,8 @@ class ReservaController extends Controller
                     if ($mesasDeCuatroAsignadas == 0 &&  $mesasDeSeisAsignadas == 0) {
                         $numComensales -= 4; // La primera mesa de 4 aporta 4 lugares
                     } else {
-                        $lugaresAdicionalesPorMesasDeCuatro += 2; // Cada mesa adicional solo añade 2 lugares
-                        $numComensales -= $lugaresAdicionalesPorMesasDeCuatro;
+
+                        $numComensales -= 2;
                     }
                     $mesasDeCuatroAsignadas++;
                     $mesasDisponibles['cuatro']--;
@@ -117,11 +117,11 @@ class ReservaController extends Controller
             } else {
                 if ($mesasDisponibles['cuatro'] > 0) {
                     // Al usar una mesa de 4, considerar la penalización al unir mesas
-                    if ($mesasDeCuatroAsignadas == 0) {
+                    if ($mesasDeCuatroAsignadas == 0 && $mesasDeSeisAsignadas == 0) {
                         $numComensales -= 4; // La primera mesa de 4 aporta 4 lugares
                     } else {
-                        $lugaresAdicionalesPorMesasDeCuatro += 2; // Cada mesa adicional solo añade 2 lugares
-                        $numComensales -= $lugaresAdicionalesPorMesasDeCuatro;
+
+                        $numComensales -= 2;
                     }
                     $mesasDeCuatroAsignadas++;
                     $mesasDisponibles['cuatro']--;

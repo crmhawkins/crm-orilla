@@ -10,24 +10,25 @@ $(document).ready(function() {
 
     //Buttons examples
     var table = $('#datatable-buttons').DataTable({
-        lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'colvis'],
-        "language": {
-            "lengthMenu": "Mostrando _MENU_ registros por página",
-            "zeroRecords": "Nothing found - sorry",
-            "info": "Mostrando página _PAGE_ of _PAGES_",
-            "infoEmpty": "No hay registros disponibles",
-            "infoFiltered": "(filtrado de _MAX_ total registros)",
-            "search": "Buscar:",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
+        dom: 'Bfrtip',
+            pageLength: 20,
+            buttons: ['copy', 'csv', 'excel', 'pdf'],
+            language: {
+                lengthMenu: 'Mostrando _MENU_ registros por página',
+                zeroRecords: 'No se encontraron registros coincidentes',
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                infoEmpty: 'No hay registros disponibles',
+                infoFiltered: '(filtrado de _MAX_ total registros)',
+                search: 'Buscar:',
+                paginate: {
+                    first: 'Primero',
+                    last: 'Ultimo',
+                    next: '>',
+                    previous: '<'
+                },
             },
-            "zeroRecords": "No se encontraron registros coincidentes",
-        }
-    });
+            order: [[0, 'asc']],
+            });
 
     table.buttons().container()
         .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');

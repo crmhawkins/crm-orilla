@@ -33,6 +33,10 @@
                         <li><a href="/admin/usuarios-create">Crear Usuario</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="/admin/settings" class="waves-effect"><i class="fa-solid fa-chair"></i><span> Mesas </span></a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

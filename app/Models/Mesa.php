@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model
+class Mesa extends Model
 {
     use HasFactory;
-    protected $table = "settings";
 
     protected $fillable = [
-        'precio_gasoil_km',
-        'saldo_inicial',
         'cantidad',
         'capacidad',
     ];
@@ -24,6 +21,6 @@ class Settings extends Model
      */
 
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at',
+        'created_at', 'updated_at',
     ];
 }

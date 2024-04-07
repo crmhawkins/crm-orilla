@@ -19,6 +19,8 @@ class Reserva extends Model
         "telefono",
         "email",
         "estado",
+        "mesas4",
+        "mesas6",
     ];
 
 

@@ -5,26 +5,25 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\Settings;
+use App\Models\Mesa;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class SettingsComponent extends Component
 {
     use LivewireAlert;
-    public $setting;
-
-    public $precio_gasoil_km;
-    public $saldo_inicial;
-    public $file;
+    public $mesas = [];
+    public $mesasParaEliminar = [];
 
     public function mount()
     {
-        $this->setting = Settings::where('id', 1)->first();
+        // Carga los datos existentes de la base de datos
+        $this->mesas = Mesa::all()->toArray();
 
-        $this->precio_gasoil_km = Settings::where('id', 1)->first()->precio_gasoil_km;
-        $this->saldo_inicial = Settings::where('id', 1)->first()->saldo_inicial;
-
+        // Asegúrate de tener al menos una fila vacía si no hay datos
+        if (empty($this->mesas)) {
+            $this->mesas = [['cantidad' => '', 'capacidad' => '']];
+        }
     }
 
     public function render()
@@ -32,37 +31,61 @@ class SettingsComponent extends Component
 
         return view('livewire.settings.settings-component');
     }
-    protected $listeners = ['submit', 'confirmed'];
 
-    public function submit()
+    public function addMesa()
     {
-        // Guardar datos validados
-        $presupuesosSave = $this->setting->update(['precio_gasoil_km' => $this->precio_gasoil_km]);
+        $this->mesas[] = ['cantidad' => '', 'capacidad' => ''];
+    }
 
-        event(new \App\Events\LogEvent(Auth::user(), 58, null));
+    public function removeMesa($index)
+    {
+        if (isset($this->mesas[$index]['id'])) {
+            // Añade el ID a la lista de mesas para eliminar
+            $this->mesasParaEliminar[] = $this->mesas[$index]['id'];
+        }
+        // Elimina la mesa del array de mesas independientemente de si es nueva o existente
+        unset($this->mesas[$index]);
+        $this->mesas = array_values($this->mesas); // Reindexa el array
+    }
 
-        // Alertas de guardado exitoso
-        if ($presupuesosSave) {
-            $this->alert('success', '¡Opciones del CRM actualizadas correctamente!', [
-                'position' => 'center',
-                'timer' => 3000,
-                'toast' => false,
-                'showConfirmButton' => true,
-                'onConfirmed' => 'confirmed',
-                'confirmButtonText' => 'ok',
-                'timerProgressBar' => true,
-            ]);
+    protected $listeners = ['saveMesas', 'confirmed'];
+    public function saveMesas()
+{
+    $mesasActuales = array_filter($this->mesas, function ($mesa) {
+        return !in_array($mesa['id'] ?? null, $this->mesasParaEliminar);
+    });
+
+    foreach ($mesasActuales as $mesa) {
+        if (isset($mesa['id'])) {
+            // Actualiza el registro existente
+            Mesa::find($mesa['id'])->update($mesa);
         } else {
-            $this->alert('error', '¡No se ha podido actualizar las opciones del CRM!', [
-                'position' => 'center',
-                'timer' => 3000,
-                'toast' => false,
-            ]);
+            // Crea un nuevo registro
+            Mesa::create($mesa);
         }
     }
+    foreach ($this->mesasParaEliminar as $mesaId) {
+        Mesa::destroy($mesaId);
+    }
+    $this->mesasParaEliminar = []; // Limpia la lista después de la eliminación
+
+    // Posiblemente quieras recargar los datos de las mesas aquí para reflejar los cambios en la interfaz de usuario
+    $this->mount();
+
+    $this->alert('success', '¡Mesas actualizadas correctamente!', [
+        'position' => 'center',
+        'timer' => 3000,
+        'toast' => false,
+        'showConfirmButton' => true,
+        'onConfirmed' => 'confirmed',
+        'confirmButtonText' => 'ok',
+        'timerProgressBar' => true,
+    ]);
+}
+
     public function confirmed()
     {
 
-        return redirect('home');
+        return redirect('/admin/home');
     }
 }

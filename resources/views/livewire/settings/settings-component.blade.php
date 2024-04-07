@@ -2,7 +2,7 @@
     <div class="page-title-box">
         <div class="row align-items-center">
             <div class="col-sm-6">
-                <h4 class="page-title">OPCIONES DEL CRM</span></h4>
+                <h4 class="page-title">OPCIONES DEL CRM</h4>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-right">
@@ -14,35 +14,32 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <div class="card m-b-30">
+            <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <div class="form-group col-md-4">
-                        <label for="eventoNiños" class="col-sm-12 col-form-label">Precio del gasoil por
-                            kilómetro</label>
-                        <div class="col-sm-10">
-                            <input type="number" wire:model="precio_gasoil_km" class="form-control"
-                                name="precio_gasoil_km" placeholder="0" step="0.01">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="eventoNiños" class="col-sm-12 col-form-label">Saldo inicial</label>
-                        <div class="col-sm-10">
-                            <input type="number" wire:model="precio_gasoil_km" class="form-control"
-                                name="precio_gasoil_km" placeholder="0" step="0.01">
+                    <h4 class="card-title mb-4">Mesas para reservar</h4>
+                    <div>
+                        <button wire:click="addMesa" class="btn btn-primary mb-3">Añadir Tipo de Mesa</button>
+                        <div class="row g-3">
+                                <div class="col-md-6"><label for="cantidad">Cantidad de mesas</label></div>
+                                <div class="col-md-6"><label for="capacidad">Comensales por mesas</label></div>
+                            @foreach ($mesas as $index => $mesa)
+                                <div class="col-md-12 d-flex align-items-center">
+                                    <input wire:model="mesas.{{ $index }}.cantidad" type="number" class="form-control" placeholder="Número de mesas">
+                                    <input wire:model="mesas.{{ $index }}.capacidad" type="number" class="form-control mx-2" placeholder="Comensales por mesa">
+                                    <button wire:click="removeMesa({{ $index }})" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 justify-content-center">
-            <div class="card m-b-30 position-fixed">
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm position-fixed">
                 <div class="card-body">
-                    <h5>Opciones de guardado</h5>
-                    <div class="row">
-                        <div class="col-12">
-                            <button class="w-100 btn btn-success mb-2" id="alertaGuardar">Guardar
-                                opciones</button>
-                        </div>
+                    <h5 class="card-title">Opciones de guardado</h5>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success" id="alertaGuardar">Guardar opciones</button>
                     </div>
                 </div>
             </div>
@@ -51,16 +48,18 @@
 </div>
 @section('scripts')
     <script>
-        $("#alertaGuardar").on("click", () => {
-            Swal.fire({
-                title: '¿Estás seguro?',
-                icon: 'warning',
-                showConfirmButton: true,
-                showCancelButton: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.livewire.emit('submit');
-                }
+        $(document).ready(function() {
+            $("#alertaGuardar").on("click", () => {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    showCancelButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.livewire.emit('saveMesas');
+                    }
+                });
             });
         });
     </script>

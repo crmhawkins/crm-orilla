@@ -54,27 +54,19 @@ class ReservaController extends Controller
                 $mesasDisponibles['seis'] += $mesa->cantidad;
             }
         }
-        $fechaHoraReserva = Carbon::createFromFormat('Y-m-d H:i', $fecha . ' ' . $horario);
+        $fechaHoraInicio = Carbon::createFromFormat('Y-m-d H:i', $fecha . ' ' . $horario);
+    $fechaHoraFin = $fechaHoraInicio->copy()->addHour(1)->addMinutes(15);
 
-        // Calcular el intervalo de tiempo para restricción de reservas (1 hora y 15 minutos antes y después)
-        $finReserva = $fechaHoraReserva->copy()->addHours(1)->addMinutes(15);
-        $inicioBuffer = $fechaHoraReserva->copy()->subHours(1)->subMinutes(15);
+    // Convertir los objetos Carbon a strings para la consulta
+    $horaInicio = $fechaHoraInicio->format('H:i');
+    $horaFin = $fechaHoraFin->format('H:i');
 
-        // Consultar reservas activas que choquen con el horario de la nueva reserva
-        $reservasActivas = Reserva::where('estado', 1)
+    // Filtrar las reservas activas que caigan dentro del horario especificado
+    $reservasActivas = Reserva::where('estado', 1)
                             ->where('fecha', $fecha)
-                            ->get()
-                            ->filter(function($reserva) use ($inicioBuffer, $finReserva) {
-                                // Convertir la hora de la reserva existente a objeto Carbon para comparar
-                                $fechaHoraInicioReservaExistente = Carbon::createFromFormat('Y-m-d H:i', $reserva->fecha . ' ' . $reserva->hora);
-                                // Estimar el fin de la reserva existente, asumiendo una duración estándar
-                                $fechaHoraFinReservaExistente = $fechaHoraInicioReservaExistente->copy()->addHours(1)->addMinutes(15); // Ajustar según necesidad
-
-                                return $fechaHoraInicioReservaExistente->between($inicioBuffer, $finReserva) ||
-                                       $fechaHoraFinReservaExistente->between($inicioBuffer, $finReserva) ||
-                                       ($inicioBuffer->between($fechaHoraInicioReservaExistente, $fechaHoraFinReservaExistente) &&
-                                        $finReserva->between($fechaHoraInicioReservaExistente, $fechaHoraFinReservaExistente));
-                            });
+                            ->where('hora', '>=', $horaInicio)
+                            ->where('hora', '<', $horaFin)
+                            ->get();
 
         // Restar las mesas ocupadas por estas reservas de las disponibles
         foreach ($reservasActivas as $reserva) {

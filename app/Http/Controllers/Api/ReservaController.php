@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReservaCreada;
-
+use PhpParser\Node\Stmt\TryCatch;
 
 class ReservaController extends Controller
 {
@@ -29,9 +29,14 @@ class ReservaController extends Controller
         if ($resultadoAsignacion['esPosible']) {
             // Crear la reserva con el número de mesas ocupadas
             $reserva = Reserva::create(array_merge($request->all(), ['mesas4' => $resultadoAsignacion['mesasDeCuatroAsignadas'],'mesas6' => $resultadoAsignacion['mesasDeSeisAsignadas']]));
-            if ($reserva->estado == 1) {
-                Mail::to($emailDelCliente)->send(new ReservaCreada($reserva));
+            try {
+                if ($reserva->estado == 1) {
+                    Mail::to($emailDelCliente)->send(new ReservaCreada($reserva));
+                }
+            } catch (\Throwable $th) {
+
             }
+
             return response()->json(['reserva' => $reserva], 201);
         } else {
             return response()->json(['error' => 'No hay suficientes mesas disponibles para acomodar la reserva.'], 400);

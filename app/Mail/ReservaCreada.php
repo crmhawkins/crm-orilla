@@ -27,6 +27,9 @@ class ReservaCreada extends Mailable
                     ->with([
                         'fecha' => $this->reserva->fecha,
                         'hora' => $this->reserva->hora,
+                        'nombre' => $this->reserva->nombre,
+                        'comensales' => $this->reserva->comensales,
+                        'telefono' => $this->reserva->telefono,
                         // Incluir otros datos relevantes que quieras mostrar en el email
                     ]);
     }

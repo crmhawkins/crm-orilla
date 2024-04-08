@@ -29,13 +29,13 @@ class ReservaController extends Controller
         if ($resultadoAsignacion['esPosible']) {
             // Crear la reserva con el número de mesas ocupadas
             $reserva = Reserva::create(array_merge($request->all(), ['mesas4' => $resultadoAsignacion['mesasDeCuatroAsignadas'],'mesas6' => $resultadoAsignacion['mesasDeSeisAsignadas']]));
-            try {
+            // try {
                 if ($reserva->estado == 1) {
                     Mail::to($emailDelCliente)->send(new ReservaCreada($reserva));
                 }
-            } catch (\Throwable $th) {
+            // } catch (\Throwable $th) {
 
-            }
+            // }
 
             return response()->json(['reserva' => $reserva], 201);
         } else {

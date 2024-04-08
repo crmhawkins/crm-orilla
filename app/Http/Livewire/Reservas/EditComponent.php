@@ -5,6 +5,9 @@ namespace App\Http\Livewire\Reservas;
 use Livewire\Component;
 use App\Models\Reserva;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReservaCreada;
+use PhpParser\Node\Stmt\TryCatch;
 
 class EditComponent extends Component
 {
@@ -17,6 +20,7 @@ class EditComponent extends Component
     public $telefono;
     public $email;
     public $estado;
+    public $estadoold;
 
     public  function mount()
     {
@@ -28,6 +32,7 @@ class EditComponent extends Component
         $this->telefono = $reserva->telefono;
         $this->email = $reserva->email;
         $this->estado = $reserva->estado;
+        $this->estadoold = $reserva->estado;
     }
     public function render()
     {
@@ -70,6 +75,13 @@ class EditComponent extends Component
                 'estado' => $this->estado,
                 ]);
 
+                try {
+                    if ($this->estado == 1 && $this->estado != $this->estadoold) {
+                        Mail::to($this->email)->send(new ReservaCreada($reserva));
+                    }
+                } catch (\Throwable $th) {
+
+                }
 
             // Alertas de guardado exitoso
             if ($reservaSave) {

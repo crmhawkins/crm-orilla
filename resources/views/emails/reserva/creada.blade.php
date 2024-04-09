@@ -7,10 +7,22 @@
 <style>
   /* Base */
   body {
-    background-color: #EDE1DD;
+    background-image: url('https://laorillachiringuito.com/wp-content/uploads/2024/03/chiringuito-la-orilla-sanlucar.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #333;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Asegura que el html y body ocupen toda la altura */
+  html {
+    height: 100%;
   }
 
   /* Contenedor del mensaje */

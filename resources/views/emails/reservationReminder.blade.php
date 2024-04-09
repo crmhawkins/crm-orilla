@@ -43,14 +43,14 @@
         <div class="content">
             <p>Hola {{ $reserva->nombre }},</p>
             <p>Queremos recordarte sobre tu próxima reserva:</p>
-            <p><strong>Lugar:</strong> {{ $reserva->lugar }}</p>
+            <p><strong>Lugar:</strong> {{ config('app.name') }}</p>
             <p><strong>Fecha:</strong> {{ $reserva->fecha }}</p>
             <p><strong>Hora:</strong> {{ $reserva->hora }}</p>
             <p><strong>Comensales:</strong> {{ $reserva->comensales }}</p>
             <p>Esperamos verte pronto y que disfrutes de tu experiencia con nosotros.</p>
         </div>
         <div class="footer">
-            © {{ date('Y') }} {{ $reserva->lugar }}. Todos los derechos reservados.
+            © {{ date('Y') }} {{ config('app.name') }}. Todos los derechos reservados.
         </div>
     </div>
 </body>

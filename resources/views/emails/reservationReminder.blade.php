@@ -7,39 +7,51 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e0f2f1; /* Suave color de fondo inspirado en la arena y el mar */
+            background-image: url('https://laorillachiringuito.com/wp-content/uploads/2024/03/chiringuito-la-orilla-decoracion.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+        }
+        html {
+            height: 100%;
         }
         .container {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente para mejorar la legibilidad */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada para un efecto moderno */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .header {
             font-size: 24px;
-            color: #0275d8; /* Color azul claro, inspirado en el cielo y el mar */
+            color: #6C4C2B; /* Manteniendo el esquema de colores del primer documento */
             padding-bottom: 10px;
-            border-bottom: 2px solid #b2ebf2; /* Línea decorativa suave */
+            border-bottom: 2px solid #EDE1DD; /* Ajuste de color para la línea decorativa */
             margin-bottom: 20px;
         }
         .content {
             font-size: 16px;
             line-height: 1.6;
-            color: #555; /* Texto en un color gris oscuro para mejor legibilidad */
+            color: #333; /* Ajuste para mejorar la legibilidad sobre el fondo claro */
         }
         .footer {
             margin-top: 30px;
             font-size: 14px;
             text-align: center;
-            color: #999;
+            color: #aaa;
             padding-top: 10px;
-            border-top: 2px solid #b2ebf2; /* Línea decorativa suave en el pie de página */
+            border-top: 2px solid #EDE1DD; /* Ajuste de color para la línea decorativa */
         }
-        a {
-            color: #0275d8;
+        a.btn {
+            background-color: #6C4C2B; /* Botones estilizados como en el primer documento */
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
             text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>

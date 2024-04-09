@@ -21,7 +21,7 @@
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(237, 225, 221, 0.8); /* Fondo semitransparente para mejorar la legibilidad */
+            background-color: rgba(237, 225, 221, 0.9); /* Fondo semitransparente para mejorar la legibilidad */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -41,7 +41,7 @@
             margin-top: 30px;
             font-size: 14px;
             text-align: center;
-            color: #aaa;
+            color: #969696;
             padding-top: 10px;
             border-top: 2px solid #EDE1DD; /* Ajuste de color para la línea decorativa */
         }

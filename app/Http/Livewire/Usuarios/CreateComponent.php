@@ -43,10 +43,10 @@ class CreateComponent extends Component
         $validatedData = $this->validate([
             'name' => 'required',
             'surname' => 'required',
-            'role' => 'required',
+            'role' => 'nullable',
             'username' => 'required',
             'password' => 'required',
-            'user_department_id' => 'required',
+            'user_department_id' => 'nullable',
             'email' => ['required', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
 
         ],

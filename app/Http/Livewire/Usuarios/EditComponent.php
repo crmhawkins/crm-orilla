@@ -50,7 +50,7 @@ class EditComponent extends Component
         $this->validate([
             'name' => 'required',
             'surname' => 'required',
-            'role' => 'required',
+            'role' => 'nullable',
             'username' => 'required',
             'password' => 'required',
             'email' => ['required', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],

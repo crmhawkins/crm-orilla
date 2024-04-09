@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Reserva;
 use App\Models\Mesa;
+use App\Models\dia;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -50,6 +51,13 @@ class ReservaController extends Controller
             'cuatro' => 0,
             'seis' => 0,
         ];
+        $fechaReserva = Carbon::createFromFormat('Y-m-d', $fecha);
+        $diaNoDisponible = Dia::where('inicio', '<=', $fechaReserva)
+        ->where('fin', '>=', $fechaReserva)
+        ->first();
+        if ($diaNoDisponible) {
+            return ['cuatro' => 0, 'seis' => 0];
+        }
 
         // Supongamos que Mesa::all() devuelve un arreglo con la cantidad de mesas por capacidad
         foreach ($mesasTotales as $mesa) {

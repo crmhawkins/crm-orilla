@@ -32,6 +32,23 @@
                         </div>
                     </div>
                 </div>
+                 <div class="card-body">
+                    <h4 class="card-title mb-4">Intervalo de días sin reservas</h4>
+                    <div>
+                        <button wire:click="addDias" class="btn btn-primary mb-3">Añadir Intervalo de días</button>
+                        <div class="row g-3">
+                                <div class="col-md-6"><label for="inicio">Inicio</label></div>
+                                <div class="col-md-6"><label for="fin">Fin</label></div>
+                            @foreach ($dias as $index => $dia)
+                                <div class="col-md-12 d-flex align-items-center">
+                                    <input wire:model="dias.{{ $index }}.inicio" type="date" class="form-control" placeholder="Número de mesas">
+                                    <input wire:model="dias.{{ $index }}.fin" type="date" class="form-control mx-2" placeholder="Comensales por mesa">
+                                    <button wire:click="removeDia({{ $index }})" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-3">

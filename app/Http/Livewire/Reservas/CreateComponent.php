@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Reservas;
 use Livewire\Component;
 use App\Models\Reserva;
 use App\Models\Mesa;
-use App\Models\Dia;
+use App\Models\dia;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Redirect;
@@ -109,7 +109,7 @@ class CreateComponent extends Component
             'seis' => 0,
         ];
         $fechaReserva = Carbon::createFromFormat('Y-m-d', $fecha);
-        $diaNoDisponible = Dia::where('inicio', '<=', $fechaReserva)
+        $diaNoDisponible = dia::where('inicio', '<=', $fechaReserva)
         ->where('fin', '>=', $fechaReserva)
         ->first();
         if ($diaNoDisponible) {

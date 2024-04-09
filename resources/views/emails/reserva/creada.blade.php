@@ -7,7 +7,7 @@
 <style>
   /* Base */
   body {
-    background-color: #f4f4f4;
+    background-color: #EDE1DD;
     color: #333;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -25,37 +25,37 @@
 
   /* Título */
   h1 {
-    color: #0275d8;
+    color: #6C4C2B;
     font-size: 24px;
     margin-bottom: 20px;
   }
 
   /* Subtítulos */
   h2 {
-    color: #025f9c;
+    color: #6C4C2B;
     font-size: 18px;
     margin-bottom: 10px;
   }
 
   /* Detalles de la reserva */
   .reservation-details {
-    background-color: #e7f3fe;
-    border-left: 4px solid #0275d8;
+    background-color: #EDE1DD;
+    border-left: 4px solid #6C4C2B;
     padding: 10px;
     margin-bottom: 20px;
   }
 
   /* Consejos y sugerencias */
   .tips {
-    background-color: #dff0d8;
-    border-left: 4px solid #5cb85c;
+    background-color: #EDE1DD;
+    border-left: 4px solid #6C4C2B;
     padding: 10px;
     margin-bottom: 20px;
   }
 
   /* Botones */
   a.btn {
-    background-color: #0275d8;
+    background-color: #6C4C2B;
     color: #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -72,7 +72,7 @@
 </head>
 <body>
 <div class="mail-container">
-  <h1>Confirmación de Reserva en Chiringuito La Orilla 🌅</h1>
+  <h1>Confirmación de Reserva en Chiringuito La Orilla </h1>
   <p>¡Estamos encantados de confirmar tu reserva! Prepárate para una experiencia inolvidable con nosotros el <strong>{{ $fecha }}</strong> a las <strong>{{ $hora }}</strong>. Gracias por elegir el paraíso a pie de playa para tu próxima aventura culinaria.</p>
 
   <div class="reservation-details">
@@ -80,7 +80,7 @@
     <p>- <strong>Contacto:</strong> {{ $nombre }}</p>
     <p>- <strong>Fecha de la Experiencia:</strong> {{ $fecha }}</p>
     <p>- <strong>Hora:</strong> {{ $hora }}</p>
-    <p>- <strong>Nº de Invitados:</strong> {{ $comensales }}</p>
+    <p>- <strong>Nº de Comensales:</strong> {{ $comensales }}</p>
     <p>- <strong>Teléfono de Contacto:</strong> {{ $telefono }}</p>
   </div>
 

@@ -1,23 +1,99 @@
-@component('mail::message')
-# ¡Tu Reserva Ha Sido Confirmada!
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmación de Reserva</title>
+<style>
+  /* Base */
+  body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
 
-Estamos emocionados de confirmar tu reserva para el **{{ $fecha }}** a las **{{ $hora }}**. ¡Gracias por elegirnos!
+  /* Contenedor del mensaje */
+  .mail-container {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+  }
 
+  /* Título */
+  h1 {
+    color: #0275d8;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 
-### Detalles de tu reserva:
-- **Contacto:** {{ $nombre }}
-- **Fecha:** {{ $fecha }}
-- **Hora:** {{ $hora }}
-- **Nº de comensales:** {{ $comensales }}
-- **Telefono:** {{ $telefono }}
+  /* Subtítulos */
+  h2 {
+    color: #025f9c;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 
+  /* Detalles de la reserva */
+  .reservation-details {
+    background-color: #e7f3fe;
+    border-left: 4px solid #0275d8;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
 
-### Algunos consejos para tu visita:
-- Te recomendamos llegar unos minutos antes de tu reserva para acomodarte cómodamente.
-- En caso de cualquier cambio o cancelación, por favor infórmanos con al menos 24 horas de anticipación.
+  /* Consejos y sugerencias */
+  .tips {
+    background-color: #dff0d8;
+    border-left: 4px solid #5cb85c;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
 
-Nos encanta poder servirte y estamos seguros de que disfrutarás de tu tiempo con nosotros. Si tienes alguna pregunta o necesitas asistencia adicional antes de tu llegada, no dudes en contactarnos.
+  /* Botones */
+  a.btn {
+    background-color: #0275d8;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-Gracias de nuevo por tu preferencia,<br>
-**{{ config('app.name') }}**
-@endcomponent
+  /* Texto del pie de página */
+  .footer-text {
+    font-size: 14px;
+    color: #aaa;
+  }
+</style>
+</head>
+<body>
+<div class="mail-container">
+  <h1>Confirmación de Reserva en Chiringuito La Orilla 🌅</h1>
+  <p>¡Estamos encantados de confirmar tu reserva! Prepárate para una experiencia inolvidable con nosotros el <strong>{{ $fecha }}</strong> a las <strong>{{ $hora }}</strong>. Gracias por elegir el paraíso a pie de playa para tu próxima aventura culinaria.</p>
+
+  <div class="reservation-details">
+    <h2>Detalles de Tu Experiencia:</h2>
+    <p>- <strong>Contacto:</strong> {{ $nombre }}</p>
+    <p>- <strong>Fecha de la Experiencia:</strong> {{ $fecha }}</p>
+    <p>- <strong>Hora:</strong> {{ $hora }}</p>
+    <p>- <strong>Nº de Invitados:</strong> {{ $comensales }}</p>
+    <p>- <strong>Teléfono de Contacto:</strong> {{ $telefono }}</p>
+  </div>
+
+  <div class="tips">
+    <h2>Preparándote para la Magia:</h2>
+    <p>- Te sugerimos llegar un poco antes para sumergirte completamente en la atmósfera relajante de nuestro chiringuito.</p>
+    <p>- En caso de cambios o cancelaciones, por favor, avísanos con al menos 24 horas de antelación para ajustar los detalles.</p>
+  </div>
+
+  <p>Estamos listos para hacerte vivir momentos inolvidables frente al mar, donde cada bocado es una celebración y cada vista un recuerdo perdurable. Para cualquier pregunta o para preparar algo especial, estamos a tu disposición.</p>
+
+  <p>Con cariño y anticipación,<br>
+  <strong>El Equipo de Chiringuito La Orilla</strong></p>
+</div>
+</body>
+</html>

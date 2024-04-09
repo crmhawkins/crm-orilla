@@ -35,7 +35,7 @@
                 </li>
 
                 <li>
-                    <a href="/admin/settings" class="waves-effect"><i class="fa-solid fa-chair"></i><span> Mesas </span></a>
+                    <a href="/admin/settings" class="waves-effect"><i class="fa-solid fa-chair"></i><span> Opciones </span></a>
                 </li>
             </ul>
         </div>

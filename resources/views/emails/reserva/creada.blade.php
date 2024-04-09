@@ -7,7 +7,7 @@
 <style>
   /* Base */
   body {
-    background-color: #EDE1DD;
+    background-color: #FFF3E0; /* Un color cálido que recuerda a la arena bajo el sol */
     color: #333;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -25,37 +25,29 @@
 
   /* Título */
   h1 {
-    color: #6C4C2B;
+    color: #FF9800; /* Un naranja vivo, como un atardecer veraniego */
     font-size: 24px;
     margin-bottom: 20px;
   }
 
   /* Subtítulos */
   h2 {
-    color: #6C4C2B;
+    color: #FF9800; /* Coincide con el título para mantener la coherencia */
     font-size: 18px;
     margin-bottom: 10px;
   }
 
   /* Detalles de la reserva */
-  .reservation-details {
-    background-color: #EDE1DD;
-    border-left: 4px solid #6C4C2B;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  /* Consejos y sugerencias */
-  .tips {
-    background-color: #EDE1DD;
-    border-left: 4px solid #6C4C2B;
+  .reservation-details, .tips {
+    background-color: #FFF3E0; /* Armoniza con el fondo para un look suave */
+    border-left: 4px solid #FF9800; /* Elemento decorativo que añade un toque de color */
     padding: 10px;
     margin-bottom: 20px;
   }
 
   /* Botones */
   a.btn {
-    background-color: #6C4C2B;
+    background-color: #FF9800; /* Invita al clic con un color alegre y llamativo */
     color: #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -72,11 +64,11 @@
 </head>
 <body>
 <div class="mail-container">
-  <h1>Confirmación de Reserva en Chiringuito La Orilla </h1>
-  <p>¡Estamos encantados de confirmar tu reserva! Prepárate para una experiencia inolvidable con nosotros el <strong>{{ $fecha }}</strong> a las <strong>{{ $hora }}</strong>. Gracias por elegir el paraíso a pie de playa para tu próxima aventura culinaria.</p>
+  <h1>Confirmación de Reserva 🌞 Chiringuito La Orilla</h1>
+  <p>¡Estamos encantados de confirmar tu reserva! Prepárate para sumergirte en la vibrante energía del verano con nosotros el <strong>{{ $fecha }}</strong> a las <strong>{{ $hora }}</strong>. Gracias por elegir nuestro rincón de paraíso para tu próxima experiencia culinaria.</p>
 
   <div class="reservation-details">
-    <h2>Detalles de Tu Experiencia:</h2>
+    <h2>Detalles de Tu Experiencia Soleada:</h2>
     <p>- <strong>Contacto:</strong> {{ $nombre }}</p>
     <p>- <strong>Fecha de la Experiencia:</strong> {{ $fecha }}</p>
     <p>- <strong>Hora:</strong> {{ $hora }}</p>
@@ -85,14 +77,14 @@
   </div>
 
   <div class="tips">
-    <h2>Preparándote para la Magia:</h2>
-    <p>- Te sugerimos llegar un poco antes para sumergirte completamente en la atmósfera relajante de nuestro chiringuito.</p>
-    <p>- En caso de cambios o cancelaciones, por favor, avísanos con al menos 24 horas de antelación para ajustar los detalles.</p>
+    <h2>Consejos para Maximizar tu Disfrute:</h2>
+    <p>- Llega un poco antes para capturar el perfecto selfie con el atardecer como tu telón de fondo.</p>
+    <p>- Si tus planes cambian, avísanos con 24 horas de antelación. Queremos asegurarnos de que todo esté perfecto para ti.</p>
   </div>
 
-  <p>Estamos listos para hacerte vivir momentos inolvidables frente al mar, donde cada bocado es una celebración y cada vista un recuerdo perdurable. Para cualquier pregunta o para preparar algo especial, estamos a tu disposición.</p>
+  <p>Te esperamos para compartir la magia del verano, con sabores que encantan y vistas que enamoran. Cualquier pregunta o solicitud especial, estamos aquí para ti.</p>
 
-  <p>Con cariño y anticipación,<br>
+  <p>Con anticipación y los mejores deseos de verano,<br>
   <strong>El Equipo de Chiringuito La Orilla</strong></p>
 </div>
 </body>
